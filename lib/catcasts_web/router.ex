@@ -22,7 +22,8 @@ defmodule CatcastsWeb.Router do
   scope "/auth", CatcastsWeb do
     pipe_through(:browser)
 
-    get "/:prowider", SessionController, :request
+    get "/:provider", SessionController, :request
+    get "/:provider/callback", SessionController, :create
   end
 
   # Other scopes may use custom stacks.

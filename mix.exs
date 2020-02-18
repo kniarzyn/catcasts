@@ -43,7 +43,10 @@ defmodule Catcasts.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false}
+      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
+      {:ueberauth, "~> 0.5"},
+      {:ueberauth_google, "~> 0.7"},
+      {:poison, "~> 3.1"}
     ]
   end
 

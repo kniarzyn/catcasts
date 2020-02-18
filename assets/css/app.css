@@ -1,3 +1,12 @@
 /* This file is for your main application css. */
+@tailwind base;
+@tailwind components;
 
-@import "./phoenix.css";
+/* Put your custom components here */
+.alert:empty {
+  display: none;
+}
+
+@tailwind utilities;
+
+/* Put your custom utilities here */

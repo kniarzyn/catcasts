@@ -2,8 +2,10 @@
 @tailwind base;
 @tailwind components;
 
-@import "./phoenix.css";
 /* Put your custom components here */
+.alert:empty {
+  display: none;
+}
 
 @tailwind utilities;
 

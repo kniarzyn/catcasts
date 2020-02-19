@@ -31,26 +31,6 @@ defmodule CatcastsWeb.VideoController do
     render(conn, "show.html", video: video)
   end
 
-  def edit(conn, %{"id" => id}) do
-    video = Multimedia.get_video!(id)
-    changeset = Multimedia.change_video(video)
-    render(conn, "edit.html", video: video, changeset: changeset)
-  end
-
-  def update(conn, %{"id" => id, "video" => video_params}) do
-    video = Multimedia.get_video!(id)
-
-    case Multimedia.update_video(video, video_params) do
-      {:ok, video} ->
-        conn
-        |> put_flash(:info, "Video updated successfully.")
-        |> redirect(to: Routes.video_path(conn, :show, video))
-
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", video: video, changeset: changeset)
-    end
-  end
-
   def delete(conn, %{"id" => id}) do
     video = Multimedia.get_video!(id)
     {:ok, _video} = Multimedia.delete_video(video)

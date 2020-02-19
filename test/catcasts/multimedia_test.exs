@@ -6,8 +6,13 @@ defmodule Catcasts.MultimediaTest do
   describe "videos" do
     alias Catcasts.Multimedia.Video
 
-    @valid_attrs %{duration: "some duration", thumbnail: "some thumbnail", title: "some title", video_id: "some video_id", view_count: 42}
-    @update_attrs %{duration: "some updated duration", thumbnail: "some updated thumbnail", title: "some updated title", video_id: "some updated video_id", view_count: 43}
+    @valid_attrs %{
+      duration: "some duration",
+      thumbnail: "some thumbnail",
+      title: "some title",
+      video_id: "some video_id",
+      view_count: 42
+    }
     @invalid_attrs %{duration: nil, thumbnail: nil, title: nil, video_id: nil, view_count: nil}
 
     def video_fixture(attrs \\ %{}) do
@@ -40,22 +45,6 @@ defmodule Catcasts.MultimediaTest do
 
     test "create_video/1 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} = Multimedia.create_video(@invalid_attrs)
-    end
-
-    test "update_video/2 with valid data updates the video" do
-      video = video_fixture()
-      assert {:ok, %Video{} = video} = Multimedia.update_video(video, @update_attrs)
-      assert video.duration == "some updated duration"
-      assert video.thumbnail == "some updated thumbnail"
-      assert video.title == "some updated title"
-      assert video.video_id == "some updated video_id"
-      assert video.view_count == 43
-    end
-
-    test "update_video/2 with invalid data returns error changeset" do
-      video = video_fixture()
-      assert {:error, %Ecto.Changeset{}} = Multimedia.update_video(video, @invalid_attrs)
-      assert video == Multimedia.get_video!(video.id)
     end
 
     test "delete_video/1 deletes the video" do

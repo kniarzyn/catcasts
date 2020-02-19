@@ -3,8 +3,13 @@ defmodule CatcastsWeb.VideoControllerTest do
 
   alias Catcasts.Multimedia
 
-  @create_attrs %{duration: "some duration", thumbnail: "some thumbnail", title: "some title", video_id: "some video_id", view_count: 42}
-  @update_attrs %{duration: "some updated duration", thumbnail: "some updated thumbnail", title: "some updated title", video_id: "some updated video_id", view_count: 43}
+  @create_attrs %{
+    duration: "some duration",
+    thumbnail: "some thumbnail",
+    title: "some title",
+    video_id: "some video_id",
+    view_count: 42
+  }
   @invalid_attrs %{duration: nil, thumbnail: nil, title: nil, video_id: nil, view_count: nil}
 
   def fixture(:video) do
@@ -43,38 +48,13 @@ defmodule CatcastsWeb.VideoControllerTest do
     end
   end
 
-  describe "edit video" do
-    setup [:create_video]
-
-    test "renders form for editing chosen video", %{conn: conn, video: video} do
-      conn = get(conn, Routes.video_path(conn, :edit, video))
-      assert html_response(conn, 200) =~ "Edit Video"
-    end
-  end
-
-  describe "update video" do
-    setup [:create_video]
-
-    test "redirects when data is valid", %{conn: conn, video: video} do
-      conn = put(conn, Routes.video_path(conn, :update, video), video: @update_attrs)
-      assert redirected_to(conn) == Routes.video_path(conn, :show, video)
-
-      conn = get(conn, Routes.video_path(conn, :show, video))
-      assert html_response(conn, 200) =~ "some updated duration"
-    end
-
-    test "renders errors when data is invalid", %{conn: conn, video: video} do
-      conn = put(conn, Routes.video_path(conn, :update, video), video: @invalid_attrs)
-      assert html_response(conn, 200) =~ "Edit Video"
-    end
-  end
-
   describe "delete video" do
     setup [:create_video]
 
     test "deletes chosen video", %{conn: conn, video: video} do
       conn = delete(conn, Routes.video_path(conn, :delete, video))
       assert redirected_to(conn) == Routes.video_path(conn, :index)
+
       assert_error_sent 404, fn ->
         get(conn, Routes.video_path(conn, :show, video))
       end

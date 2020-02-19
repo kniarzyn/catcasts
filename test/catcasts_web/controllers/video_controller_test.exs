@@ -1,8 +1,6 @@
 defmodule CatcastsWeb.VideoControllerTest do
   use CatcastsWeb.ConnCase
 
-  alias Catcasts.Multimedia
-
   @create_attrs %{
     duration: "some duration",
     thumbnail: "some thumbnail",
@@ -11,11 +9,6 @@ defmodule CatcastsWeb.VideoControllerTest do
     view_count: 42
   }
   @invalid_attrs %{duration: nil, thumbnail: nil, title: nil, video_id: nil, view_count: nil}
-
-  def fixture(:video) do
-    {:ok, video} = Multimedia.create_video(@create_attrs)
-    video
-  end
 
   describe "index" do
     test "lists all videos", %{conn: conn} do
@@ -49,9 +42,8 @@ defmodule CatcastsWeb.VideoControllerTest do
   end
 
   describe "delete video" do
-    setup [:create_video]
-
-    test "deletes chosen video", %{conn: conn, video: video} do
+    test "deletes chosen video", %{conn: conn} do
+      video = youtube_video_fixture()
       conn = delete(conn, Routes.video_path(conn, :delete, video))
       assert redirected_to(conn) == Routes.video_path(conn, :index)
 
@@ -59,10 +51,5 @@ defmodule CatcastsWeb.VideoControllerTest do
         get(conn, Routes.video_path(conn, :show, video))
       end
     end
-  end
-
-  defp create_video(_) do
-    video = fixture(:video)
-    {:ok, video: video}
   end
 end

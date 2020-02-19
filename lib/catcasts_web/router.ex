@@ -17,6 +17,7 @@ defmodule CatcastsWeb.Router do
   scope "/", CatcastsWeb do
     pipe_through :browser
 
+    resources "/videos", VideoController
     get "/", PageController, :index
   end
 

@@ -1,5 +1,7 @@
-<div class="min-h-full min-w-full w-full h-auto fixed bg-cover" style="background-image: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.2)), url(<%= Routes.static_path(@conn, "/images/cat.jpg") %>)">
-  <div class="text-center text-white pb-16">
-    <h1 class="font-sans font-bold text-center mt-32 text-gray-300 text-5xl" style="text-shadow: 1px 1px 2px #0a0a0a">Welcome to Catcasts!</h1>
-  </div>
+<div class="bg-gray-300 w-full h-screen">
+  <h1 class="absolute font-sans font-bold text-center mt-32 w-full mx-auto text-gray-900 text-5xl z-50">
+    Welcome to Catcasts!
+  </h1>
+  <img class="object-cover object-center w-full h-screen opacity-75" src="<%= Routes.static_path(@conn, "/images/cat.jpg") %>" alt="Smutny kotek" />
+
 </div>

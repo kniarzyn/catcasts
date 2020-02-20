@@ -11,22 +11,24 @@
     <div class="text-sm lg:flex-grow"></div>
 
     <div>
+
       <%= if @conn.assigns[:user] do %>
+
         <span class="block mt-4 lg:inline-block lg:mt-0 text-gray-900 mr-4 no-underline hover:underline">
           Welcome, <%= @conn.assigns.user.first_name %>!
         </span>
-        <a href="#" class="block mt-4 lg:inline-block lg:mt-0 text-gray-900 mr-4 no-underline hover:underline">
-          Videos
-        </a>
-        <a href="#" class="block mt-4 lg:inline-block lg:mt-0 text-gray-900 mr-4 no-underline hover:underline">
-          Add Video
-        </a>
-        <%= link "Sign out", to: Routes.session_path(@conn, :delete), class: "block mt-4 lg:inline-block lg:mt-0 text-grey-darkest mr-4 no-underline hover:underline" %>
+        <%= link "Videos", to: Routes.video_path(@conn, :index), class: "lg:inline-block lg:mt-0 hover:underline" %>
+        <%= link "Add video",
+            to: Routes.video_path(@conn, :new),
+            class: "lg:inline-block lg:mt-0 hover:underline" %>
+        <%= link "Sign out",
+            to: Routes.session_path(@conn, :delete),
+            class: "lg:inline-block lg:mt-0 hover:underline" %>
+
       <% else %>
-        <a href="#" class="block mt-4 lg:inline-block lg:mt-0 text-gray-900 mr-4 no-underline hover:underline">
-          Videos
-        </a>
-        <a href="/auth/google?scope=email%20profile" class="block mt-4 lg:inline-block lg:mt-0 text-gray-900 mr-4 no-underline hover:underline">
+
+        <%= link "Videos", to: Routes.video_path(@conn, :index), class: "lg:inline-block lg:mt-0 hover:underline" %>
+        <a href="/auth/google?scope=email%20profile" class="lg:inline-block lg:mt-0 hover:underline">
           Sign in with Google
         </a>
       <% end %>

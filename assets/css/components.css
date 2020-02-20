@@ -1,0 +1,9 @@
+.alert:empty {
+  display: none;
+}
+
+nav {
+  a {
+    @apply block mt-4 text-lg font-semibold text-gray-700 mr-4 no-underline ;
+  } 
+}
